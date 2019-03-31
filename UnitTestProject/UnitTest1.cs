@@ -1,52 +1,61 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
+using System;
 using IdyalUnitTest;
 
 namespace UnitTestProject
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTest1
     {
     
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
             Assert.AreEqual("Hello, we will do some tests", Program.HelloMessage());
         }
 
-        [TestMethod]
+        [Test]
         public void Add()
         {
             Program math = new Program();
             Assert.AreEqual(50, math.Add(20, 30));
         }
-        [TestMethod]
+        [Test]
         public void Sub()
         {
             Program math = new Program();
             Assert.AreEqual(25, math.Sub(40, 15));
         }
-        [TestMethod]
+        [Test]
         public void Prod()
         {
             Program math = new Program();
             Assert.AreEqual(50, math.Prod(5, 10));
         }
-        [TestMethod]
+        [Test]
         public void Diviser()
         {
             Program math = new Program();
             Assert.AreEqual(5, math.Diviser(100, 20));
         }
 
-        [TestMethod]
+        [Test]
         public void ReturnFalseGivenValueOf1()
         {
             Program test = new Program();
             var result = test.IsPrime(1);
             Assert.IsFalse(result, "1 should not be prime");
         }
-        [TestMethod]
+        [TestCase(-1)]
+        [TestCase(0)]
+        [TestCase(1)]
+        public void ReturnFalseGivenValuesLessThan2(int value)
+        {
+            Program test = new Program();
+            var result = test.IsPrime(value);
+            Assert.IsFalse(result, $"{value} should not be prime");
+        }
+        [Test]
         public void ReturnTrueGivenValueOf2()
         {
             Program test = new Program();
